@@ -1,6 +1,7 @@
 ## Hi there 👋
 
-![Visitor Count](https : //profile-counter.glitch.me/hugosantos-io/count.svg)
+![Visitor Count](https://profile-counter.glitch.me/hugosantos-io/count.svg)
+
 <!--
 **hugosantos-io/hugosantos-io** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
