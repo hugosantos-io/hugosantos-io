@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#0b0f14">
+  <meta name="description" content="Compare time zones at a glance. Plan calls across cities without leaving the page.">
+  <title>Tyme — world clock and time converter</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0f14'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%232563eb' stroke-width='2'/%3E%3Cpath d='M16 10v7l4 2' fill='none' stroke='%23e8eef6' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">tyme</span>
+      </div>
+
+    </header>
+
+    <main class="stage">
+      <div class="command-bar">
+        <div class="command-lead">
+          <button class="icon-btn chip-toggle" id="toggle-sort" type="button" data-state="manual" aria-label="Sort: manual" title="Manual order">
+            <svg class="ico ico-sort-manual" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4.6 3.4h2.2c.5 0 .9.4.9.9v9.2l1.2-1.3a1 1 0 0 1 1.4 1.4l-3.2 3.4a1 1 0 0 1-1.4 0l-3.2-3.4a1 1 0 1 1 1.4-1.4l1.2 1.3V4.3c0-.5.4-.9.9-.9z"/><path fill="currentColor" d="M12.2 4.1h8.2a1.15 1.15 0 0 1 0 2.3h-8.2a1.15 1.15 0 0 1 0-2.3zm0 4.6h6.4a1.15 1.15 0 0 1 0 2.3h-6.4a1.15 1.15 0 0 1 0-2.3zm0 4.6h4.6a1.15 1.15 0 0 1 0 2.3h-4.6a1.15 1.15 0 0 1 0-2.3zm0 4.6h2.7a1.15 1.15 0 0 1 0 2.3h-2.7a1.15 1.15 0 0 1 0-2.3z"/></svg>
+            <svg class="ico ico-sort-largest" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4.6 3.4h2.2c.5 0 .9.4.9.9v9.2l1.2-1.3a1 1 0 0 1 1.4 1.4l-3.2 3.4a1 1 0 0 1-1.4 0l-3.2-3.4a1 1 0 1 1 1.4-1.4l1.2 1.3V4.3c0-.5.4-.9.9-.9z"/><path fill="currentColor" d="M12.2 4.1h8.2a1.15 1.15 0 0 1 0 2.3h-8.2a1.15 1.15 0 0 1 0-2.3zm0 4.6h6.4a1.15 1.15 0 0 1 0 2.3h-6.4a1.15 1.15 0 0 1 0-2.3zm0 4.6h4.6a1.15 1.15 0 0 1 0 2.3h-4.6a1.15 1.15 0 0 1 0-2.3zm0 4.6h2.7a1.15 1.15 0 0 1 0 2.3h-2.7a1.15 1.15 0 0 1 0-2.3z"/></svg>
+            <svg class="ico ico-sort-smallest" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4.6 20.6h2.2c.5 0 .9-.4.9-.9v-9.2l1.2 1.3a1 1 0 0 0 1.4-1.4l-3.2-3.4a1 1 0 0 0-1.4 0l-3.2 3.4a1 1 0 1 0 1.4 1.4l1.2-1.3v9.2c0 .5.4.9.9.9z"/><path fill="currentColor" d="M12.2 4.1h2.7a1.15 1.15 0 0 1 0 2.3h-2.7a1.15 1.15 0 0 1 0-2.3zm0 4.6h4.6a1.15 1.15 0 0 1 0 2.3h-4.6a1.15 1.15 0 0 1 0-2.3zm0 4.6h6.4a1.15 1.15 0 0 1 0 2.3h-6.4a1.15 1.15 0 0 1 0-2.3zm0 4.6h8.2a1.15 1.15 0 0 1 0 2.3h-8.2a1.15 1.15 0 0 1 0-2.3z"/></svg>
+          </button>
+        <div class="command-search">
+          <label class="search-field command-field">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span class="visually-hidden">Search cities</span>
+            <input id="city-query" type="search" placeholder="City, country, or timezone" autocomplete="off" enterkeyhint="search">
+          </label>
+          <div class="search-results" id="search-results" hidden></div>
+        </div>
+        </div>
+
+        <nav class="day-switch" aria-label="Date">
+          <button class="day-nav" id="prev-day" type="button" aria-label="Previous day">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="week-strip" id="week-strip"></div>
+          <button class="day-nav" id="next-day" type="button" aria-label="Next day">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </nav>
+
+        <span class="bar-sep" aria-hidden="true"></span>
+        <button class="now-jump" id="jump-now" type="button">Now</button>
+
+        <div class="command-toggles" role="group" aria-label="View options">
+          <button class="icon-btn chip-toggle" id="toggle-scheme" type="button" data-state="light" aria-label="Theme: Light" title="Light">
+            <svg class="ico ico-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 3.5v2M12 18.5v2M3.5 12h2M18.5 12h2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <svg class="ico ico-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M16 14.5A6.5 6.5 0 0 1 9.2 6 6.5 6.5 0 1 0 16 14.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            <svg class="ico ico-system" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 8.4a3.6 3.6 0 0 0 0 7.2z" fill="currentColor"/><path d="M12 3.4v1.7M12 18.9v1.7M3.4 12h1.7M18.9 12h1.7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </button>
+          <button class="icon-btn chip-toggle hour-toggle" id="toggle-hour" type="button" data-state="24" aria-label="24-hour clock" title="24h">
+            <svg class="hour-mark" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="7.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 12V7.4M12 12h4.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span class="hour-caption">24h</span>
+          </button>
+          <button class="icon-btn chip-toggle" id="toggle-weekends-btn" type="button" data-state="off" aria-pressed="false" aria-label="Mark weekends" title="Weekends">
+            <svg class="ico ico-weekend" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 3.4v3M16 3.4v3M4 9.5h16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <svg class="ico ico-weekend-on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 3.4v3M16 3.4v3M4 9.5h16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="9" cy="15" r="1.25" fill="currentColor"/><circle cx="13.5" cy="15" r="1.25" fill="currentColor"/></svg>
+          </button>
+          <button class="icon-btn" id="open-settings" type="button" aria-label="Settings" title="Settings">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="8" cy="7" r="2.1" fill="var(--surface)" stroke="currentColor" stroke-width="1.7"/><circle cx="15" cy="12" r="2.1" fill="var(--surface)" stroke="currentColor" stroke-width="1.7"/><circle cx="10" cy="17" r="2.1" fill="var(--surface)" stroke="currentColor" stroke-width="1.7"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="board" id="board" role="grid" aria-label="Time comparison across cities"></div>
+    </main>
+
+    <aside class="dock" id="selection-dock" hidden>
+      <div class="dock-copy" id="selection-copy"></div>
+      <div class="dock-actions">
+        <button class="text-btn" id="copy-times" type="button">Copy times</button>
+        <button class="text-btn" id="copy-link" type="button">Copy link</button>
+        <button class="text-btn ghost" id="clear-selection" type="button">Clear</button>
+      </div>
+    </aside>
+  </div>
+
+  <div class="overlay" id="settings-overlay" hidden>
+    <div class="sheet settings-sheet" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="sheet-head">
+        <h2 id="settings-title">Settings</h2>
+        <button class="icon-btn" id="close-settings" type="button" aria-label="Close settings">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <section class="setting-block">
+        <h3>Clock</h3>
+        <div class="segmented" role="group" aria-label="Hour format">
+          <button type="button" data-hour12="true">12h</button>
+          <button type="button" data-hour12="false">24h</button>
+        </div>
+      </section>
+
+      <section class="setting-block">
+        <h3>Appearance</h3>
+        <div class="segmented" role="group" aria-label="Theme">
+          <button type="button" data-theme="system">System</button>
+          <button type="button" data-theme="light">Light</button>
+          <button type="button" data-theme="dark">Dark</button>
+        </div>
+        <div class="palette-row" role="group" aria-label="Palette">
+          <button type="button" class="swatch ember" data-palette="ember" aria-label="Rose palette"></button>
+          <button type="button" class="swatch moss" data-palette="moss" aria-label="Teal palette"></button>
+          <button type="button" class="swatch atlas" data-palette="atlas" aria-label="Blue palette"></button>
+        </div>
+      </section>
+
+      <section class="setting-block">
+        <h3>Grid colours</h3>
+        <div class="bands-picker bands-picker-settings" role="group" aria-label="Grid colour palette">
+          <button type="button" class="bands-option" data-bands="dusk" aria-pressed="false">
+            <span class="bands-swatches" aria-hidden="true">
+              <i style="background:#ccd3f2"></i>
+              <i style="background:#d2e4db"></i>
+              <i style="background:#d9def6"></i>
+            </span>
+            <span class="bands-name">Crepúsculo suave</span>
+            <span class="bands-desc">azul + sálvia</span>
+          </button>
+          <button type="button" class="bands-option" data-bands="mist" aria-pressed="false">
+            <span class="bands-swatches" aria-hidden="true">
+              <i style="background:#d8d0ef"></i>
+              <i style="background:#e5ddcf"></i>
+              <i style="background:#ced8eb"></i>
+            </span>
+            <span class="bands-name">Neblina elegante</span>
+            <span class="bands-desc">lavanda + areia</span>
+          </button>
+          <button type="button" class="bands-option" data-bands="urban" aria-pressed="false">
+            <span class="bands-swatches" aria-hidden="true">
+              <i style="background:#cdd8e7"></i>
+              <i style="background:#d0e2e1"></i>
+              <i style="background:#d7dce7"></i>
+            </span>
+            <span class="bands-name">Urbana serena</span>
+            <span class="bands-desc">cinza-azulado + menta</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="setting-block">
+        <h3>Grid</h3>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-tz">
+          <span>Show timezone names</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-weekends">
+          <span>Mark weekends</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-overlap">
+          <span>Highlight overlap (09:00–18:00)</span>
+        </label>
+      </section>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="js/cities.js"></script>
+  <script src="js/time.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
