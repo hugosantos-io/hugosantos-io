@@ -13,7 +13,6 @@
     hour12: false,
     showTz: true,
     markWeekends: false,
-    showOverlap: true,
     theme: 'system',
     palette: 'atlas',
     bands: 'dusk',
@@ -125,7 +124,6 @@
     });
     document.getElementById('toggle-tz').checked = state.showTz;
     document.getElementById('toggle-weekends').checked = state.markWeekends;
-    document.getElementById('toggle-overlap').checked = state.showOverlap;
 
     const schemeBtn = document.getElementById('toggle-scheme');
     if (schemeBtn) {
@@ -173,7 +171,6 @@
       hour12: state.hour12,
       showTz: state.showTz,
       markWeekends: state.markWeekends,
-      showOverlap: state.showOverlap,
       theme: state.theme,
       palette: state.palette,
       bands: state.bands,
@@ -227,7 +224,6 @@
     // v5: weekend tint off by default so every weekday shares the band palette
     if (!stored.version || stored.version < 5) state.markWeekends = false;
     else state.markWeekends = stored.markWeekends === true;
-    state.showOverlap = stored.showOverlap !== false;
     state.theme = stored.theme || 'system';
     // v3 redesign: cool neutrals + blue default; refresh legacy warm palettes once
     if (!stored.version || stored.version < 3) state.palette = 'atlas';
@@ -285,14 +281,6 @@
     return [city.country, region].filter(Boolean).join(', ');
   }
 
-  function overlapAt(index) {
-    if (!state.showOverlap) return false;
-    return state.cityIds.every((id) => {
-      const hour = T.parts(columnInstant(index), byId[id].tz).hour;
-      return T.inBusinessHours(hour);
-    });
-  }
-
   function selectedRange() {
     if (!state.selection) return null;
     const a = Math.min(state.selection.start, state.selection.end);
@@ -339,15 +327,13 @@
         const chip = dateChange ? T.formatDateChip(p) : null;
         const selected = range && index >= range.start && index <= range.end;
         const hover = state.hover === index;
-        const overlap = overlapAt(index);
         const classes = [
           'hour',
           band,
           weekend ? 'weekend' : '',
           dateChange ? 'is-day-start' : '',
           selected ? 'is-selected' : '',
-          hover ? 'is-hover' : '',
-          overlap ? 'is-overlap' : ''
+          hover ? 'is-hover' : ''
         ].filter(Boolean).join(' ');
         const tz = state.showTz ? `<span class="tz">${p.tzName}</span>` : '';
         const date = chip
@@ -1242,10 +1228,6 @@
     });
     document.getElementById('toggle-weekends').addEventListener('change', (event) => {
       state.markWeekends = event.target.checked;
-      render();
-    });
-    document.getElementById('toggle-overlap').addEventListener('change', (event) => {
-      state.showOverlap = event.target.checked;
       render();
     });
     document.getElementById('toggle-scheme').addEventListener('click', () => {

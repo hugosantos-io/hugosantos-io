@@ -51,7 +51,6 @@ html[data-scheme="light"] {
   --line: #d5dce8;
   --weekend: #f0ebef;
   --weekend-fade: #e8e2e6;
-  --overlap: rgba(37, 99, 235, 0.14);
   --shadow: 0 16px 36px rgba(11, 18, 32, 0.1);
   --hover-line: #0b1220;
 }
@@ -110,7 +109,6 @@ html[data-scheme="dark"] {
   --line: #243041;
   --weekend: #1c151a;
   --weekend-fade: #141014;
-  --overlap: rgba(56, 189, 248, 0.14);
   --shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
   --hover-line: #e8eef6;
 }
@@ -154,21 +152,6 @@ html[data-bands="urban"][data-theme="dark"] {
   --day: #3a504e;
   --day-fade: #263836;
   --day-ink: #a8d4d0;
-}
-
-[data-palette="ember"][data-scheme="light"],
-html[data-palette="ember"][data-theme="light"] {
-  --overlap: rgba(225, 29, 72, 0.12);
-}
-
-[data-palette="moss"][data-scheme="light"],
-html[data-palette="moss"][data-theme="light"] {
-  --overlap: rgba(13, 148, 136, 0.14);
-}
-
-[data-palette="atlas"][data-scheme="light"],
-html[data-palette="atlas"][data-theme="light"] {
-  --overlap: rgba(37, 99, 235, 0.14);
 }
 
 * { box-sizing: border-box; }
@@ -1315,17 +1298,6 @@ html[data-theme="dark"] .hour.weekend.is-day-start.is-selected {
 .board-inner:has(.hour.is-selected) .hour.day.is-day-start:not(.is-selected) .date-chip-num {
   color: var(--day-ink);
   opacity: 1;
-}
-
-.hour.is-overlap::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 3px;
-  background: var(--accent);
-  opacity: 0.7;
 }
 
 .select-box,

@@ -125,10 +125,6 @@
     return weekday === 'Sat' || weekday === 'Sun';
   }
 
-  function inBusinessHours(hour) {
-    return hour >= 9 && hour < 18;
-  }
-
   function offsetHours(homeOffsetMs, cityOffsetMs) {
     return Math.round((cityOffsetMs - homeOffsetMs) / 3600000);
   }
@@ -160,7 +156,6 @@
     parseIsoDate,
     hourBand,
     isWeekend,
-    inBusinessHours,
     offsetHours,
     formatOffset,
     weekdayIndex,
