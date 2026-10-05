@@ -416,6 +416,14 @@ html[data-mark-weekends="true"] .day-chip.weekend .dow {
   min-width: 0;
 }
 
+.command-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--bar-gap);
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
 .command-search {
   position: relative;
   z-index: 2;
@@ -1709,6 +1717,34 @@ body.is-overlay-open {
   .app { padding: 18px 24px 16px; }
 }
 
+@media (max-width: 800px) {
+  .command-bar {
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    container-type: inline-size;
+    container-name: command;
+  }
+
+  .command-controls {
+    order: 1;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .command-lead {
+    order: 2;
+    flex: none;
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  .day-switch {
+    flex: 0 0 auto;
+  }
+}
+
 @media (max-width: 720px) {
   :root {
     --label: 228px;
@@ -1727,36 +1763,76 @@ body.is-overlay-open {
     padding-right: 0;
   }
 
-  .day-chip {
-    min-width: 32px;
-    padding: 0 5px;
-  }
-
   .brand-name { font-size: 1.25rem; }
 
   .command-bar {
-    --bar-gap: 8px;
+    --bar-gap: 6px;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .command-controls {
+    order: 1;
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 5px;
   }
 
   .command-lead {
-    flex-basis: 100%;
+    order: 2;
+    flex: none;
+    flex-basis: auto;
     width: 100%;
+  }
+
+  .day-switch {
+    gap: 3px;
+    flex: 0 0 auto;
+  }
+
+  .week-strip {
+    gap: 3px;
+  }
+
+  .day-chip {
+    min-width: 34px;
+    padding: 0 4px;
+  }
+
+  .day-nav {
+    width: 16px;
+    min-width: 16px;
+  }
+
+  .bar-sep {
+    margin-right: 0;
+  }
+
+  .now-jump {
+    padding: 0 8px;
+    flex: 0 0 auto;
+  }
+
+  .command-toggles {
+    gap: 4px;
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  .command-controls .icon-btn,
+  .command-controls .chip-toggle,
+  .command-controls .hour-toggle {
+    width: 32px;
+    min-width: 32px;
   }
 
   .command-search .search-field input {
     width: 100%;
     min-width: 0;
-  }
-
-  .command-toggles {
-    gap: 4px;
-  }
-
-  .chip-toggle {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    min-height: 40px;
   }
 
   .bands-picker {
@@ -1812,6 +1888,90 @@ body.is-overlay-open {
     margin-left: -12px;
     margin-right: -12px;
     border-radius: 0;
+  }
+}
+
+@container command (min-width: 370px) {
+  .command-controls {
+    gap: 6px;
+  }
+
+  .day-switch {
+    gap: 5px;
+  }
+
+  .week-strip {
+    gap: 5px;
+  }
+
+  .now-jump {
+    padding: 0 10px;
+  }
+
+  .command-toggles {
+    gap: 6px;
+  }
+
+  .command-controls .icon-btn,
+  .command-controls .chip-toggle,
+  .command-controls .hour-toggle {
+    width: 36px;
+    min-width: 36px;
+  }
+}
+
+@media (max-width: 384px) {
+  .command-controls {
+    gap: 4px;
+  }
+
+  .day-switch,
+  .week-strip {
+    gap: 2px;
+  }
+
+  .day-chip {
+    min-width: 32px;
+    padding: 0 3px;
+  }
+
+  .command-toggles {
+    gap: 3px;
+  }
+}
+
+@media (max-width: 340px) {
+  .command-bar {
+    padding: 6px;
+  }
+
+  .day-nav {
+    width: 14px;
+    min-width: 14px;
+  }
+
+  .day-chip {
+    min-width: 28px;
+    padding: 0 2px;
+  }
+
+  .now-jump {
+    padding: 0 6px;
+  }
+
+  .command-controls {
+    gap: 3px;
+  }
+
+  .command-toggles {
+    gap: 2px;
+  }
+
+  .command-controls .icon-btn,
+  .command-controls .chip-toggle,
+  .command-controls .hour-toggle {
+    width: 26px;
+    min-width: 26px;
   }
 }
 
